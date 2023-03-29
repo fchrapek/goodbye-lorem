@@ -2,12 +2,14 @@ import { Heading, Image, Text } from '@chakra-ui/react';
 
 const Header = () => (
   <>
-    <Heading as="h1" marginBottom="1rem">
+    <Heading as="h1" marginTop="40px" marginBottom="20px">
       Goodbye Lorem
     </Heading>
-    <Text fontSize="20px" textAlign="center">
-      Say goodbye to lorem ipsum. Say hello to context ready, good text content
-      for each section of your website
+    <Text fontSize="20px" textAlign="center" marginBottom="30px">
+      Say goodbye to lorem ipsum!
+      <br />
+      Say hello to context appropriate content for your next mockup and be the
+      designer that wows!
     </Text>
   </>
 );

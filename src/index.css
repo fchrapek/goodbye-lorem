@@ -1,3 +1,14 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+body {
+  background-color: #f2f2f2 !important;
+}
+
+h2 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-top: 1rem;
+  margin-bottom: 0.4rem;
+}
+
+ul {
+  padding-left: 16px;
+}

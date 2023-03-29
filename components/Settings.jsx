@@ -1,14 +1,8 @@
 import { useState } from 'react';
 import {
   Box,
-  Heading,
-  Image,
-  Text,
-  Flex,
+  SimpleGrid,
   Input,
-  Textarea,
-  CheckboxGroup,
-  Stack,
   Checkbox,
   Button,
   useToast,
@@ -16,49 +10,87 @@ import {
 
 // eslint-disable-next-line react/prop-types
 const Settings = ({ settings }) => {
-  const [text, setText] = useState('');
-  const [radio, setRadio] = useState('');
-
+  const [websiteDescription, setWebsiteDescription] = useState('');
+  const [sections, setSections] = useState([]);
   const toast = useToast();
 
+  const handleChange = (e) => {
+    const { value, checked } = e.target;
+
+    if (checked) {
+      setSections((pre) => [...pre, value]);
+    } else
+      setSections((pre) => [...pre.filter((element) => element !== value)]);
+  };
+
+  if (sections.length > 0) {
+    sections.join(', ');
+  }
+
   const submitSettings = () => {
-    if (text === '') {
+    if (websiteDescription === '') {
       toast({
-        title: 'Text field is empty',
-        description: 'Put something in here',
+        title: 'Website description cannot be empty',
         status: 'error',
         duration: 5000,
         isClosable: true,
       });
     } else {
-      settings(text, radio);
+      settings(websiteDescription, sections);
     }
   };
 
   return (
-    <Box marginTop="20px" padding="12px" bg="white" borderRadius="8px">
+    <Box
+      marginTop="20px"
+      padding={{ sm: '16px', md: '26px' }}
+      bg="white"
+      borderRadius="8px"
+      width="100%"
+    >
       <Input
-        marginBottom="10px"
-        placeholder="Describe your website"
-        value={text}
-        onChange={(e) => setText(e.target.value)}
+        marginBottom="20px"
+        placeholder="Briefly describe your website"
+        value={websiteDescription}
+        onChange={(e) => setWebsiteDescription(e.target.value)}
       />
-      <CheckboxGroup colorScheme="green">
-        <Stack spacing={[1, 5]} direction={['column', 'row']}>
-          <Checkbox onChange={(e) => setRadio(e.target.value)} value="hero">
-            Hero
-          </Checkbox>
-        </Stack>
-      </CheckboxGroup>
+      <SimpleGrid
+        columns={{ sm: 1, md: 2 }}
+        spacingX="40px"
+        spacingY="12px"
+        marginBottom="20px"
+      >
+        <Checkbox onChange={handleChange} value="hero">
+          Hero
+        </Checkbox>
+        <Checkbox onChange={handleChange} value="paragraph">
+          Paragraph
+        </Checkbox>
+        <Checkbox onChange={handleChange} value="call to action">
+          Call to action paragraph
+        </Checkbox>
+        <Checkbox onChange={handleChange} value="catchy slogan">
+          Catchy slogan
+        </Checkbox>
+        <Checkbox onChange={handleChange} value="features">
+          Features
+        </Checkbox>
+        <Checkbox onChange={handleChange} value="faq">
+          FAQ
+        </Checkbox>
+        <Checkbox onChange={handleChange} value="footer">
+          Footer
+        </Checkbox>
+      </SimpleGrid>
+
       <Button
         bg="blue.500"
-        marginTop="20px"
         color="white"
         width="100%"
         _hover={{ bg: 'blue.700' }}
         onClick={submitSettings}
       >
-        Get the proper dummy text
+        Get dummy text for your mockup
       </Button>
     </Box>
   );
