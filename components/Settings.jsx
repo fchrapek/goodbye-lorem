@@ -75,6 +75,9 @@ const Settings = ({ settings }) => {
         <Checkbox onChange={handleChange} value="features">
           Features
         </Checkbox>
+        <Checkbox onChange={handleChange} value="testimonials">
+          Testimonials
+        </Checkbox>
         <Checkbox onChange={handleChange} value="faq">
           FAQ
         </Checkbox>

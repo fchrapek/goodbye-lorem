@@ -29,13 +29,15 @@ const App = () => {
         model: 'text-davinci-003',
         prompt: `Make dummy text content that will be used in a mockup website according to provided information. Previously the industry standard was the 'Lorem ipsum' text, but we want to make this process much better.
 
-        This is the general website niche and short description: ${websiteDescription} and those are the sections that the user needs the dummy content for: ${sections}. The order of the sections should reflect the usual order of any live website (Hero section is usually at the top, Footer is at the bottom, etc.) Clearly split the response into sections. Wrap the section content into correct HTML tags. Section titles should be wrapped in the <h2> tag, Features heading and FAQ questions should be wrapped in a <strong> tag. Don't pass any HTML tags as a string, the user can't see any HTML tags displayed as a string.
+        This is the general website niche and short description: ${websiteDescription} and those are the sections that the user needs the dummy content for: ${sections}. The order of the sections should reflect the usual order of any live website (Hero section is usually at the top, Footer is at the bottom, etc.) Clearly split the response into sections. Wrap the section content into correct HTML tags. Section titles should be wrapped in the <h2> tag, Features heading and FAQ questions should be wrapped in a <strong> tag. Don't pass any HTML tags as a string, the user can't see any raw HTML tags displayed.
 
-        If the Features or FAQ section was selected, please make at least 6 examples. The Features should have the feature heading and short description. The FAQ section should have question and answer.
+        If the Features, Testimonials or FAQ section were selected, make at least 6 examples. The Features should have the feature heading and short description. The FAQ section should have question and answer.
 
-        Make the response in the same language as the provided description here: ${websiteDescription} (if the ${websiteDescription} is in English the whole response should be in English and so on). Translate the section titles as well, meaning the sections provided by a user here: ${sections}
+        Make the response in the same language as the provided description: ${websiteDescription} (if the ${websiteDescription} is in English the whole response should be in English and so on). Translate the section titles as well, meaning these sections: ${sections}
 
-        Only include sections that are listed here: ${sections}. So if only Hero section is provided only prepare dummy content for the Hero section (and so on)`,
+        Only include these sections: ${sections}. So if only Hero section is provided only prepare dummy content for the Hero section (and so on). Don't provide data for sections that are not listed
+
+        Don't ever start the response with a single word or a single dot. The first text of the provided data should always be the heading of the selected section`,
         temperature: 0.2,
         max_tokens: 3500,
         frequency_penalty: 0.8,
@@ -76,6 +78,7 @@ const App = () => {
                   marginBottom="20px"
                   fontSize="30px"
                   textAlign="center"
+                  borderBottom="none"
                 >
                   Grab the content
                 </Heading>
